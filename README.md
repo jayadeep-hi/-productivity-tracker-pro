@@ -1,3 +1,15 @@
+COMPANY: CODETECH IT SOLUTIONS
+
+NAME: JAYADEEP LOKAVARAPU
+
+INTERN ID: CT04DZ1341
+
+DOMAIN: WEB DEVELOPMENT
+
+DURATION:4 WEEKS
+
+MENTOR: NEELA SONTOSH
+
 # 🚀 Productivity Time Tracker - Chrome Extension
 
 A powerful Chrome extension that tracks time spent on different websites and provides comprehensive productivity analytics to help you optimize your online time usage.
