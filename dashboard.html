@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productivity Analytics Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <div class="header-content">
+                <h1 class="dashboard-title">📊 Productivity Analytics Dashboard</h1>
+                <div class="header-actions">
+                    <button class="btn btn-secondary" id="refreshData">🔄 Refresh</button>
+                    <button class="btn btn-primary" id="exportData">📥 Export Data</button>
+                </div>
+            </div>
+            <div class="date-selector">
+                <label for="dateRange">Date Range:</label>
+                <select id="dateRange">
+                    <option value="7">Last 7 Days</option>
+                    <option value="14">Last 14 Days</option>
+                    <option value="30" selected>Last 30 Days</option>
+                    <option value="90">Last 90 Days</option>
+                </select>
+            </div>
+        </header>
+
+        <!-- Overview Cards -->
+        <section class="overview-section">
+            <div class="overview-grid">
+                <div class="overview-card total-time">
+                    <div class="card-icon">⏰</div>
+                    <div class="card-content">
+                        <h3>Total Time</h3>
+                        <div class="card-value" id="totalTime">0h 0m</div>
+                        <div class="card-change" id="totalTimeChange">+0% vs previous period</div>
+                    </div>
+                </div>
+                
+                <div class="overview-card productive-time">
+                    <div class="card-icon">✅</div>
+                    <div class="card-content">
+                        <h3>Productive Time</h3>
+                        <div class="card-value" id="productiveTime">0h 0m</div>
+                        <div class="card-change" id="productiveTimeChange">+0% vs previous period</div>
+                    </div>
+                </div>
+                
+                <div class="overview-card productivity-score">
+                    <div class="card-icon">📈</div>
+                    <div class="card-content">
+                        <h3>Productivity Score</h3>
+                        <div class="card-value" id="productivityScore">0%</div>
+                        <div class="card-change" id="productivityScoreChange">+0% vs previous period</div>
+                    </div>
+                </div>
+                
+                <div class="overview-card sites-visited">
+                    <div class="card-icon">🌐</div>
+                    <div class="card-content">
+                        <h3>Sites Visited</h3>
+                        <div class="card-value" id="sitesVisited">0</div>
+                        <div class="card-change" id="sitesVisitedChange">+0% vs previous period</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Charts Section -->
+        <section class="charts-section">
+            <div class="chart-container">
+                <div class="chart-header">
+                    <h3>Daily Productivity Trend</h3>
+                    <div class="chart-controls">
+                        <button class="chart-btn active" data-chart="productivity">Productivity</button>
+                        <button class="chart-btn" data-chart="time">Time Spent</button>
+                    </div>
+                </div>
+                <div class="chart-wrapper">
+                    <canvas id="productivityChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Detailed Analytics -->
+        <section class="analytics-section">
+            <div class="analytics-grid">
+                <!-- Top Sites -->
+                <div class="analytics-card">
+                    <h3>🏆 Top Sites by Time</h3>
+                    <div class="top-sites-list" id="topSitesList">
+                        <div class="loading">Loading...</div>
+                    </div>
+                </div>
+
+                <!-- Category Breakdown -->
+                <div class="analytics-card">
+                    <h3>📊 Category Breakdown</h3>
+                    <div class="category-chart-wrapper">
+                        <canvas id="categoryChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Weekly Summary -->
+                <div class="analytics-card">
+                    <h3>📅 Weekly Summary</h3>
+                    <div class="weekly-summary" id="weeklySummary">
+                        <div class="loading">Loading...</div>
+                    </div>
+                </div>
+
+                <!-- Productivity Insights -->
+                <div class="analytics-card">
+                    <h3>💡 Productivity Insights</h3>
+                    <div class="insights-list" id="insightsList">
+                        <div class="loading">Loading...</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Time Distribution -->
+        <section class="time-distribution-section">
+            <div class="chart-container">
+                <h3>⏱️ Hourly Activity Distribution</h3>
+                <div class="chart-wrapper">
+                    <canvas id="hourlyChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Goals and Targets -->
+        <section class="goals-section">
+            <div class="goals-grid">
+                <div class="goal-card">
+                    <h3>🎯 Daily Productivity Goal</h3>
+                    <div class="goal-progress">
+                        <div class="goal-bar">
+                            <div class="goal-fill" id="dailyGoalProgress"></div>
+                        </div>
+                        <div class="goal-text">
+                            <span id="dailyGoalText">0% Complete</span>
+                            <span id="dailyGoalTime">0h 0m / 6h 0m</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="goal-card">
+                    <h3>📈 Weekly Improvement</h3>
+                    <div class="improvement-stats">
+                        <div class="improvement-item">
+                            <span class="improvement-label">Productivity:</span>
+                            <span class="improvement-value" id="weeklyProductivityChange">+0%</span>
+                        </div>
+                        <div class="improvement-item">
+                            <span class="improvement-label">Focus Time:</span>
+                            <span class="improvement-value" id="weeklyFocusChange">+0%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Settings -->
+        <section class="settings-section">
+            <div class="settings-card">
+                <h3>⚙️ Extension Settings</h3>
+                <div class="settings-grid">
+                    <div class="setting-item">
+                        <label for="autoTracking">Auto-tracking</label>
+                        <input type="checkbox" id="autoTracking" checked>
+                    </div>
+                    <div class="setting-item">
+                        <label for="notifications">Notifications</label>
+                        <input type="checkbox" id="notifications" checked>
+                    </div>
+                    <div class="setting-item">
+                        <label for="productivityGoal">Daily Goal (hours)</label>
+                        <input type="number" id="productivityGoal" value="6" min="1" max="24">
+                    </div>
+                    <div class="setting-item">
+                        <label for="breakReminders">Break Reminders</label>
+                        <input type="checkbox" id="breakReminders" checked>
+                    </div>
+                </div>
+                <button class="btn btn-primary" id="saveSettings">💾 Save Settings</button>
+            </div>
+        </section>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>

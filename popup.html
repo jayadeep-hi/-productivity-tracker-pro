@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productivity Tracker</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">⏰ Productivity Tracker</h1>
+            <div class="status-indicator" id="statusIndicator">
+                <span class="status-dot"></span>
+                <span class="status-text">Tracking...</span>
+            </div>
+        </header>
+
+        <div class="current-site" id="currentSite">
+            <div class="site-info">
+                <div class="site-title" id="siteTitle">Loading...</div>
+                <div class="site-url" id="siteUrl">Loading...</div>
+            </div>
+            <div class="site-category" id="siteCategory">
+                <span class="category-badge" id="categoryBadge">Loading...</span>
+            </div>
+        </div>
+
+        <div class="time-display">
+            <div class="time-spent">
+                <span class="time-label">Time on this site:</span>
+                <span class="time-value" id="timeSpent">00:00:00</span>
+            </div>
+        </div>
+
+        <div class="quick-stats">
+            <div class="stat-card">
+                <div class="stat-value" id="todayTotal">00:00</div>
+                <div class="stat-label">Today Total</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="todayProductive">00:00</div>
+                <div class="stat-label">Productive</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="todayUnproductive">00:00</div>
+                <div class="stat-label">Unproductive</div>
+            </div>
+        </div>
+
+        <div class="productivity-score">
+            <div class="score-label">Today's Productivity Score</div>
+            <div class="score-circle">
+                <div class="score-value" id="productivityScore">0%</div>
+            </div>
+        </div>
+
+        <div class="actions">
+            <button class="btn btn-primary" id="openDashboard">
+                📊 Open Dashboard
+            </button>
+            <button class="btn btn-secondary" id="pauseTracking">
+                ⏸️ Pause Tracking
+            </button>
+        </div>
+
+        <div class="footer">
+            <div class="goal-progress">
+                <div class="goal-label">Daily Goal Progress</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="goalProgress"></div>
+                </div>
+                <div class="goal-text" id="goalText">0% of daily goal</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>

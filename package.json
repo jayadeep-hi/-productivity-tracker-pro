@@ -1,0 +1,37 @@
+{
+  "name": "productivity-time-tracker",
+  "version": "1.0.0",
+  "description": "A Chrome extension that tracks time spent on different websites and provides productivity analytics",
+  "main": "background.js",
+  "scripts": {
+    "build": "echo 'No build process needed for Chrome extension'",
+    "test": "echo 'No tests specified'",
+    "lint": "echo 'No linting configured'"
+  },
+  "keywords": [
+    "chrome-extension",
+    "productivity",
+    "time-tracking",
+    "analytics",
+    "browser-extension",
+    "productivity-tools"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/productivity-time-tracker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/productivity-time-tracker/issues"
+  },
+  "homepage": "https://github.com/yourusername/productivity-time-tracker#readme",
+  "devDependencies": {},
+  "dependencies": {},
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "browserslist": [
+    "Chrome >= 88"
+  ]
+}
